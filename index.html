@@ -120,6 +120,22 @@ footer .row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;a
 footer .brandname{font-family:var(--serif);font-size:18px;color:#fff;font-weight:700}
 footer a{color:#fff}
 
+
+/* bulletin */
+.news{display:grid;gap:14px;max-width:860px}
+.post{display:grid;grid-template-columns:92px 1fr;gap:20px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+.post.pinned{border-color:var(--red);box-shadow:0 0 0 3px var(--red-soft)}
+.post time{font-family:var(--serif);font-weight:700;color:var(--red-deep);line-height:1.25;font-size:15px}
+.post time small{display:block;color:var(--muted);font-family:var(--sans);font-weight:400;font-size:12px}
+.post h3{font-size:18px;margin:2px 0 6px}
+.post p{margin:0;color:#4b4340;font-size:15px}
+.post a.more{display:inline-block;margin-top:8px;font-weight:700;font-size:14px}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--red-soft);color:var(--red-deep);margin-right:8px;vertical-align:middle}
+.chip.pin{background:var(--red);color:#fff}
+#moreNews{margin-top:16px;background:none;border:1px solid var(--line);border-radius:999px;padding:9px 22px;font:inherit;font-weight:700;color:var(--red);cursor:pointer}
+.empty{color:var(--muted)}
+@media (max-width:560px){.post{grid-template-columns:1fr;gap:6px}}
+
 @media (max-width:900px){
   .hero-grid{grid-template-columns:1fr}
   .ribbon{max-width:460px;margin:0 auto}
@@ -153,6 +169,7 @@ footer a{color:#fff}
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">選單</button>
     <nav id="nav" aria-label="主要選單">
       <ul>
+        <li><a href="#news">公布欄</a></li>
         <li><a href="#about">關於協會</a></li>
         <li><a href="#mission">協會任務</a></li>
         <li><a href="#membership">會員與會費</a></li>
@@ -194,6 +211,19 @@ footer a{color:#fff}
     <div class="pillars" aria-label="三大面向">
       <div>臨床與教育</div><div>品質與管理</div><div>職涯與永續</div>
     </div>
+  </div>
+</section>
+
+<section id="news" aria-labelledby="newsH">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Bulletin</p>
+      <h2 id="newsH">公布欄</h2>
+      <p>協會與籌備會的最新消息、入會提醒與重要通知，都會公布在這裡。</p>
+    </div>
+    <div class="news" id="newsList" aria-live="polite"><p class="empty">載入中…</p></div>
+    <button id="moreNews" hidden>顯示更早的公告</button>
+    <p class="note">本公布欄為公開資訊；會員個別事項將另行通知。如有疑問請聯絡籌備會。</p>
   </div>
 </section>
 
@@ -366,6 +396,24 @@ footer a{color:#fff}
   var btn=document.getElementById('menuBtn'),nav=document.getElementById('nav');
   btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
   nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');btn.setAttribute('aria-expanded','false')}});
+
+  (function(){
+    var box=document.getElementById('newsList'),more=document.getElementById('moreNews'),LIMIT=5,items=[],shown=LIMIT;
+    function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+    function render(){
+      if(!items.length){box.innerHTML='<p class="empty">目前沒有公告。</p>';more.hidden=true;return}
+      box.innerHTML=items.slice(0,shown).map(function(n){
+        var d=n.date.split('-');
+        var link=(n.link&&/^https?:\/\//.test(n.link.url))?'<a class="more" href="'+esc(n.link.url)+'" target="_blank" rel="noopener">'+esc(n.link.text||'了解更多')+' →</a>':'';
+        return '<article class="post'+(n.pinned?' pinned':'')+'"><time datetime="'+esc(n.date)+'">'+d[1]+'/'+d[2]+'<small>'+d[0]+'</small></time><div><h3>'+(n.pinned?'<span class="chip pin">置頂</span>':'')+'<span class="chip">'+esc(n.tag||'公告')+'</span>'+esc(n.title)+'</h3><p>'+esc(n.body)+'</p>'+link+'</div></article>';
+      }).join('');
+      more.hidden=items.length<=shown;
+    }
+    more.addEventListener('click',function(){shown+=LIMIT;render()});
+    fetch('announcements.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(list){
+      items=list.sort(function(a,b){return (b.pinned?1:0)-(a.pinned?1:0)||b.date.localeCompare(a.date)});render();
+    }).catch(function(){box.innerHTML='<p class="empty">公告暫時無法載入，請稍後再試或洽籌備會。</p>'});
+  })();
 </script>
 </body>
 </html>
