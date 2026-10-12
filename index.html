@@ -134,6 +134,8 @@ footer a{color:#fff}
 .chip.pin{background:var(--red);color:#fff}
 #moreNews{margin-top:16px;background:none;border:1px solid var(--line);border-radius:999px;padding:9px 22px;font:inherit;font-weight:700;color:var(--red);cursor:pointer}
 .empty{color:var(--muted)}
+.mailbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+button.btn{font:inherit;font-weight:700;font-size:15px;cursor:pointer}
 @media (max-width:560px){.post{grid-template-columns:1fr;gap:6px}}
 
 @media (max-width:900px){
@@ -378,7 +380,12 @@ footer a{color:#fff}
       <div class="card">
         <h3>籌備會聯絡人</h3>
         <p>戴子綺 小姐、李文君 小姐</p>
-        <p style="margin-top:14px"><a class="btn" href="mailto:alliance.education@pet100pa.com?subject=台灣獸醫卓越永續協會 洽詢">寫信給籌備會</a></p>
+        <div class="mailbtns">
+          <a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=alliance.education@pet100pa.com&su=%E5%8F%B0%E7%81%A3%E7%8D%B8%E9%86%AB%E5%8D%93%E8%B6%8A%E6%B0%B8%E7%BA%8C%E5%8D%94%E6%9C%83%20%E6%B4%BD%E8%A9%A2" target="_blank" rel="noopener">用 Gmail 寫信</a>
+          <a class="btn ghost" href="mailto:alliance.education@pet100pa.com?subject=台灣獸醫卓越永續協會 洽詢">用郵件程式寫信</a>
+          <button class="btn ghost" id="copyMail" type="button" data-mail="alliance.education@pet100pa.com">複製信箱</button>
+        </div>
+        <p class="note" id="copyMsg" role="status" aria-live="polite" style="margin-top:10px"></p>
       </div>
     </div>
   </div>
@@ -413,6 +420,18 @@ footer a{color:#fff}
     fetch('announcements.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(list){
       items=list.sort(function(a,b){return (b.pinned?1:0)-(a.pinned?1:0)||b.date.localeCompare(a.date)});render();
     }).catch(function(){box.innerHTML='<p class="empty">公告暫時無法載入，請稍後再試或洽籌備會。</p>'});
+  })();
+
+  (function(){
+    var b=document.getElementById('copyMail'),m=document.getElementById('copyMsg');
+    if(!b)return;
+    b.addEventListener('click',function(){
+      var t=b.getAttribute('data-mail');
+      function ok(){m.textContent='已複製信箱：'+t}
+      function fail(){m.textContent='請手動複製信箱：'+t}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fail)}
+      else{try{var i=document.createElement('input');i.value=t;document.body.appendChild(i);i.select();document.execCommand('copy');document.body.removeChild(i);ok()}catch(e){fail()}}
+    });
   })();
 </script>
 </body>
