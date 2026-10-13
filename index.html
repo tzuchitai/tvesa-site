@@ -80,9 +80,11 @@ table{width:100%;border-collapse:separate;border-spacing:0;background:var(--pape
 th,td{padding:16px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
 th{background:var(--red-soft);color:var(--red-deep);font-weight:700;white-space:nowrap}
 tr:last-child td{border-bottom:0}
-#membership td:nth-child(1),#membership td:nth-child(3),#membership td:nth-child(4),#membership td:last-child{white-space:nowrap}
-#founding td:first-child{font-weight:700;min-width:130px;max-width:170px}
-#founding td:nth-child(2),#founding td:nth-child(3){min-width:200px}
+#membership td:nth-child(1){font-weight:700;min-width:150px}
+#membership td:nth-child(3),#membership td:nth-child(4),#membership td:nth-child(5){white-space:nowrap}
+#membership td:nth-child(2){min-width:230px}
+#membership td:nth-child(6){min-width:200px}
+#membership tr.hl td{background:#fbf3f2}
 .pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:700}
 .yes{background:#e6f1e6;color:#2d5a2d}.no{background:#eee;color:#666}
 .swipe{display:none;font-size:13px;color:var(--muted);margin:0 0 8px}
@@ -159,7 +161,7 @@ button.btn{font:inherit;font-weight:700;font-size:15px;cursor:pointer}
   .wrap{padding:0 18px}
   .table-wrap{overflow-x:auto}
   .swipe{display:block}
-  table{min-width:640px}
+  table{min-width:900px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 :focus-visible{outline:3px solid var(--red);outline-offset:2px}
@@ -275,22 +277,23 @@ button.btn{font:inherit;font-weight:700;font-size:15px;cursor:pointer}
     <div class="sec-head">
       <p class="eyebrow">Membership</p>
       <h2>會員類別與會費</h2>
-      <p>入會須贊同協會宗旨，填具入會申請書，經審查通過並繳納會費後成為會員。以下依章程草案第七、八條整理，正式內容以成立大會通過之章程為準。</p>
+      <p>入會須贊同協會宗旨，填具入會申請書，經審查通過並繳納會費後成為會員。以下依章程草案第七、八條整理，並納入規劃中的創始會員辦法，正式內容以成立大會通過之章程為準。</p>
     </div>
-    <p class="swipe">← 表格可左右滑動，查看費用與投票權 →</p>
+    <p class="swipe">← 表格可左右滑動，查看費用與權益 →</p>
     <div class="table-wrap">
     <table>
-      <thead><tr><th>類別</th><th>資格</th><th>入會費</th><th>常年會費</th><th>投票權</th></tr></thead>
+      <thead><tr><th>類別</th><th>資格</th><th>入會費</th><th>常年會費</th><th>投票權</th><th>課程活動與榮譽</th></tr></thead>
       <tbody>
-        <tr><td><b>個人會員</b></td><td>領有我國獸醫師證書之獸醫師；或獸醫相關領域之教學、研究或臨床專業人員，經理事會認定者</td><td>NT$ 3,000</td><td>NT$ 2,000</td><td><span class="pill yes">有</span></td></tr>
-        <tr><td><b>團體會員</b></td><td>贊同宗旨之機構或團體（動物醫院、相關學會團體、教育研究機構、企業機構等），推派代表 1 人行使會員權利</td><td>NT$ 6,000</td><td>NT$ 3,000</td><td><span class="pill yes">有</span></td></tr>
-        <tr><td><b>贊助會員</b></td><td>贊同宗旨，且贊助協會經費或資源之個人或團體</td><td>NT$ 1,000 ＊</td><td>NT$ 2,000 ＊</td><td><span class="pill no">無</span></td></tr>
-        <tr><td><b>榮譽會員</b></td><td>對宗旨之推動或獸醫專業卓越與永續發展有特殊貢獻者，經理事會通過後聘為榮譽會員</td><td>無需繳納</td><td>無需繳納</td><td><span class="pill no">無</span></td></tr>
+        <tr id="founding" class="hl"><td>創始會員（個人）<span class="tl-tag">規劃中</span></td><td>協會成立前，經籌備會審定入會之個人會員</td><td><b>免繳</b></td><td>NT$ 2,000</td><td><span class="pill yes">有</span></td><td><b>創始會員價、優先報名資格</b>；紀念證書、列名創始會員名錄</td></tr>
+        <tr><td>個人會員</td><td>領有我國獸醫師證書之獸醫師；或獸醫相關領域之教學、研究或臨床專業人員，經理事會認定者</td><td>NT$ 3,000</td><td>NT$ 2,000</td><td><span class="pill yes">有</span></td><td>一般價、依一般順序報名</td></tr>
+        <tr><td>團體會員</td><td>贊同宗旨之機構或團體（動物醫院、相關學會團體、教育研究機構、企業機構等），推派代表 1 人行使會員權利</td><td>NT$ 6,000</td><td>NT$ 3,000</td><td><span class="pill yes">有</span></td><td>一般價、依一般順序報名</td></tr>
+        <tr><td>贊助會員</td><td>贊同宗旨，且贊助協會經費或資源之個人或團體</td><td>NT$ 1,000 ＊</td><td>NT$ 2,000 ＊</td><td><span class="pill no">無</span></td><td>—</td></tr>
+        <tr><td>榮譽會員</td><td>對宗旨之推動或獸醫專業卓越與永續發展有特殊貢獻者，經理事會通過後聘為榮譽會員</td><td>無需繳納</td><td>無需繳納</td><td><span class="pill no">無</span></td><td>—</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="note">每一會員（會員代表）為一權。會員未繳會費不得享有會員權利；連續兩年未繳會費，視為自動退會。</p>
-    <p class="note">＊贊助會員之會費為規劃內容，尚待章程修正通過後確定。創始會員另有入會費優惠，請見下方「創始會員與一般會員」。</p>
+    <p class="note">每一會員（會員代表）為一權，創始會員亦不另加票數或席次。所有會員皆須填具入會申請書；會員未繳會費不得享有會員權利，連續兩年未繳會費，視為自動退會。</p>
+    <p class="note">規劃中事項（創始會員辦法、贊助會員費用＊）尚待籌備會議審查，並經成立大會通過章程後確定，最終內容以通過之章程為準。</p>
   </div>
 </section>
 
@@ -350,32 +353,6 @@ button.btn{font:inherit;font-weight:700;font-size:15px;cursor:pointer}
       <li><span class="dot">4</span><div><h3>成立大會與第一屆理監事聯席會</h3><p>通過章程，選舉第一屆理事、監事，並選出理事長。</p></div></li>
       <li><span class="dot">5</span><div><h3>報請內政部許可立案</h3><p>會後 30 日內備齊文件，申請許可立案。</p></div></li>
     </ol>
-  </div>
-</section>
-
-<section class="alt" id="founding">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Founding Members</p>
-      <h2>創始會員與一般會員 <span class="tl-tag">規劃中</span></h2>
-      <p>協會成立前完成入會、經籌備會審定的個人會員，預計列為創始會員。創始會員在入會費與課程活動上有優惠，會員權利與義務與一般會員相同，每位會員一票。</p>
-    </div>
-    <p class="swipe">← 表格可左右滑動 →</p>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>項目</th><th>一般會員（個人）</th><th>創始會員（個人）</th></tr></thead>
-      <tbody>
-        <tr><td>表決權、選舉權、被選舉權、罷免權</td><td>有，每人一權</td><td>相同，不另加票數或席次</td></tr>
-        <tr><td>入會費</td><td>NT$ 3,000</td><td><b>免繳</b></td></tr>
-        <tr><td>常年會費</td><td>NT$ 2,000</td><td>NT$ 2,000（與一般會員一致）</td></tr>
-        <tr><td>課程與活動</td><td>一般價、依一般順序報名</td><td><b>創始會員價、優先報名資格</b></td></tr>
-        <tr><td>榮譽</td><td>—</td><td>紀念證書、列名創始會員名錄</td></tr>
-        <tr><td>申請程序</td><td>填具入會申請書，經審查通過</td><td>相同，須填具入會申請書</td></tr>
-        <tr><td>義務</td><td>遵守章程與大會決議，繳納常年會費；連續兩年未繳視為自動退會</td><td>相同</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p class="note">以上為規劃內容，尚待籌備會議審查，並經成立大會通過章程後確定，最終內容以通過之章程為準。</p>
   </div>
 </section>
 
