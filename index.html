@@ -80,7 +80,9 @@ table{width:100%;border-collapse:separate;border-spacing:0;background:var(--pape
 th,td{padding:16px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
 th{background:var(--red-soft);color:var(--red-deep);font-weight:700;white-space:nowrap}
 tr:last-child td{border-bottom:0}
-td:nth-child(1),td:nth-child(3),td:nth-child(4),td:last-child{white-space:nowrap}
+#membership td:nth-child(1),#membership td:nth-child(3),#membership td:nth-child(4),#membership td:last-child{white-space:nowrap}
+#founding td:first-child{font-weight:700;min-width:130px;max-width:170px}
+#founding td:nth-child(2),#founding td:nth-child(3){min-width:200px}
 .pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:700}
 .yes{background:#e6f1e6;color:#2d5a2d}.no{background:#eee;color:#666}
 .swipe{display:none;font-size:13px;color:var(--muted);margin:0 0 8px}
@@ -354,14 +356,25 @@ button.btn{font:inherit;font-weight:700;font-size:15px;cursor:pointer}
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Founding Members</p>
-      <h2>創始會員 <span class="tl-tag">規劃中</span></h2>
-      <p>協會成立前完成入會、經籌備會審定的會員，預計列為創始會員。創始會員為榮譽與參與上的肯定，權利義務與其他會員相同，具體辦法確定後另行公布。</p>
+      <h2>創始會員與一般會員 <span class="tl-tag">規劃中</span></h2>
+      <p>協會成立前完成入會、經籌備會審定的個人會員，預計列為創始會員。創始會員在入會費與課程活動上有優惠，會員權利與義務與一般會員相同，每位會員一票。</p>
     </div>
-    <div class="grid3">
-      <div class="card"><h3>紀念與名錄</h3><p>創始會員紀念證書，並列名於創始會員名錄。</p></div>
-      <div class="card"><h3>學習資源</h3><p>協會課程與研討會優先報名及創始會員價。</p></div>
-      <div class="card"><h3>參與交流</h3><p>專屬交流群組與年度聚會，優先參與工作小組。</p></div>
+    <p class="swipe">← 表格可左右滑動 →</p>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>一般會員（個人）</th><th>創始會員（個人）</th></tr></thead>
+      <tbody>
+        <tr><td>表決權、選舉權、被選舉權、罷免權</td><td>有，每人一權</td><td>相同，不另加票數或席次</td></tr>
+        <tr><td>入會費</td><td>NT$ 3,000</td><td><b>免繳</b></td></tr>
+        <tr><td>常年會費</td><td>NT$ 2,000</td><td>NT$ 2,000（與一般會員一致）</td></tr>
+        <tr><td>課程與活動</td><td>一般價、依一般順序報名</td><td><b>創始會員價、優先報名資格</b></td></tr>
+        <tr><td>榮譽</td><td>—</td><td>紀念證書、列名創始會員名錄</td></tr>
+        <tr><td>申請程序</td><td>填具入會申請書，經審查通過</td><td>相同，須填具入會申請書</td></tr>
+        <tr><td>義務</td><td>遵守章程與大會決議，繳納常年會費；連續兩年未繳視為自動退會</td><td>相同</td></tr>
+      </tbody>
+    </table>
     </div>
+    <p class="note">以上為規劃內容，尚待籌備會議審查，並經成立大會通過章程後確定，最終內容以通過之章程為準。</p>
   </div>
 </section>
 
